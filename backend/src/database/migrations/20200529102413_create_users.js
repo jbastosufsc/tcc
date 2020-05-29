@@ -1,5 +1,5 @@
 exports.up = function(knex) {
-  return knex.schema.createTable('users', function(table) {
+  return knex.schema.createTable('usuarios', function(table) {
     table.string('id').primary()
     table.string('nome').notNullable()
     table.string('classificacao').notNullable()
@@ -9,5 +9,5 @@ exports.up = function(knex) {
 }
 
 exports.down = function(knex) {
-  return knex.schema.dropTable('users')
+  return knex.schema.dropTable('usuarios')
 }
