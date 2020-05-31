@@ -10,7 +10,7 @@ module.exports = {
     return response.json(usuarios)
   },
 
-  //Função responsável por criar usuários na tabela usuário
+  //Função responsável por criar um usuários na tabela de usuário
   async create(request, response) {
     //Desestruturação para pegar os dados em variaveis separadas
     const { nome, classificacao, email, whatsapp } = request.body

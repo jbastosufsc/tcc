@@ -5,16 +5,19 @@ const PropostasController = require('./controllers/PropostasController')
 
 const routes = express.Router()
 
-// Rota responsável por listar todos os usuarios da tabela de usuários
+// Rota responsável por LISTAR todos os usuarios da tabela de usuários
 routes.get('/usuarios', UsuariosController.index)
 
-// Rota responsável por criar um usuario na tabela de usuários
+// Rota responsável por CRIAR um usuario na tabela de usuários
 routes.post('/usuarios', UsuariosController.create)
 
-// Rota responsável por listar todass as propostas da tabela de propostas
+// Rota responsável por LISTAR todass as propostas da tabela de propostas
 routes.get('/propostas', PropostasController.index)
 
-// Rota responsável por criar uma proposta na tabela de propostas
+// Rota responsável por CRIAR uma proposta na tabela de propostas
 routes.post('/propostas', PropostasController.create)
+
+// Rota responsável por DELETAR uma proposta na tabela de propostas
+routes.delete('/propostas/:id', PropostasController.delete)
 
 module.exports = routes
