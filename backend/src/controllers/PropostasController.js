@@ -12,8 +12,12 @@ module.exports = {
     //Armazena o valor da quantidade de propostas cadastradas no cabeçalho da resposta
     response.header('X-Total-Count', qntdPropostas['count(*)'])
 
-    //Consulta as propostas adaptando o resultado para usar paginação
-    const propostas = await conexaoComBD('propostas').limit(5).offset((page - 1) * 5).select('*')
+    //Consulta as propostas adaptando o resultado para usar paginação e trazer os dados do usuario que criou a proposta
+    const propostas = await conexaoComBD('propostas')
+      .join('usuarios', 'usuarios.id', '=', 'propostas.user_id')
+      .limit(5)
+      .offset((page - 1) * 5)
+      .select([ 'propostas.*', 'usuarios.nome', 'usuarios.email', 'usuarios.whatsapp' ])
 
     return response.json(propostas)
   },
