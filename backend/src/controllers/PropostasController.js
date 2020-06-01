@@ -3,7 +3,17 @@ const conexaoComBD = require('../database/conexao')
 module.exports = {
   //Função responsável por listar todas as propostas da tabela de propostas
   async index(request, response) {
-    const propostas = await conexaoComBD('propostas').select('*')
+    //Buscar dentro de request.query o valor de page, caso nao exista, valor de page é definido como 1.
+    const { page = 1 } = request.query
+
+    //Query para retornar a quantidadede propostas cadastradas na tabela de propostas
+    const [ qntdPropostas ] = await conexaoComBD('propostas').count()
+
+    //Armazena o valor da quantidade de propostas cadastradas no cabeçalho da resposta
+    response.header('X-Total-Count', qntdPropostas['count(*)'])
+
+    //Consulta as propostas adaptando o resultado para usar paginação
+    const propostas = await conexaoComBD('propostas').limit(5).offset((page - 1) * 5).select('*')
 
     return response.json(propostas)
   },
