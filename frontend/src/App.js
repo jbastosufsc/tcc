@@ -1,8 +1,13 @@
 import React from 'react'
+import Login from './pages/Login'
+
+import './global.css'
 
 function App() {
   return (
-    <h1>TCC Jorge Bastos</h1>
+    <div>
+      <Login />
+    </div>
   )
 }
 
