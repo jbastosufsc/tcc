@@ -1,5 +1,6 @@
 import React from 'react'
 import './styles.css'
+import { Link } from 'react-router-dom'
 import brainstorm from '../../assets/brainstorm.svg'
 import brasaoUFSC from '../../assets/brasao_site_ufsc.svg'
 import { FiLogIn } from 'react-icons/fi'
@@ -15,10 +16,10 @@ export default function Login() {
           <button className="button" type="submit">
             Entrar
           </button>
-          <a href="/register">
+          <Link to="/cadastro">
             <FiLogIn size={16} color="#1659bf" />
             Não tenho cadastro.
-          </a>
+          </Link>
         </form>
       </section>
       <img src={brainstorm} alt="Usuarios compartilhando ideias" />
