@@ -16,7 +16,7 @@ export default function Login() {
           <button className="button" type="submit">
             Entrar
           </button>
-          <Link to="/cadastro">
+          <Link className="back-link" to="/cadastro">
             <FiLogIn size={16} color="#1659bf" />
             Não tenho cadastro.
           </Link>
