@@ -26,6 +26,21 @@ export default function Perfil() {
     [ usuarioID ]
   )
 
+  async function deletarProposta(id) {
+    try {
+      await api.delete(`propostas/${id}`, {
+        headers: {
+          Authorization: usuarioID
+        }
+      })
+
+      //Remove da lista atual a proposta que foi deletada, para que nao seja necessário renderizar a página novamente para não exibir mais a proposta deletada.
+      setPropostas(propostas.filter((proposta) => proposta.id !== id))
+    } catch (error) {
+      alert('Erro ao deletar proposta, tente novamente')
+    }
+  }
+
   return (
     <div className="perfil-container">
       <header>
@@ -47,7 +62,7 @@ export default function Perfil() {
             <p>{proposta.titulo}</p>
             <strong>DESCRIÇÃO:</strong>
             <p>{proposta.descricao}</p>
-            <button>
+            <button onClick={() => deletarProposta(proposta.id)}>
               <FiTrash2 size={20} color="#a8a8b3" />
             </button>
           </li>
