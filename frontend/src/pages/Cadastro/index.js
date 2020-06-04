@@ -15,7 +15,7 @@ export default function Cadastro() {
           <p>Faça seu cadastro, entre na plataforma e contribua com a sua ideias</p>
           <Link className="back-link" to="/">
             <FiArrowLeft size={16} color="#1659bf" />
-            Não tenho cadastro.
+            Retornar para página inicial.
           </Link>
         </section>
         <form>
