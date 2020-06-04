@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { FiPower, FiTrash2 } from 'react-icons/fi'
 
 import './styles.css'
@@ -10,6 +10,8 @@ export default function Perfil() {
   const usuarioID = localStorage.getItem('usuarioID')
   const usuarioNome = localStorage.getItem('usuarioNome')
   const [ propostas, setPropostas ] = useState([])
+
+  const historico = useHistory()
 
   useEffect(
     () => {
@@ -25,6 +27,12 @@ export default function Perfil() {
     },
     [ usuarioID ]
   )
+
+  function realizarLogout() {
+    localStorage.clear()
+
+    historico.push('/')
+  }
 
   async function deletarProposta(id) {
     try {
@@ -49,7 +57,7 @@ export default function Perfil() {
         <Link className="button" to="/propostas/nova">
           Cadastrar nova Proposta
         </Link>
-        <button type="button">
+        <button onClick={realizarLogout} type="button">
           <FiPower size={18} color="#E02041" />
         </button>
       </header>
