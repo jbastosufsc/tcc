@@ -1,11 +1,38 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi'
 
 import './styles.css'
 import brasaoUFSC from '../../assets/brasao_site_ufsc.svg'
+import api from '../../services/api'
 
 export default function NovaProposta() {
+  const [ titulo, setTitulo ] = useState('')
+  const [ descricao, setDescricao ] = useState('')
+
+  const usuarioID = localStorage.getItem('usuarioID')
+  const historico = useHistory()
+
+  async function criarNovaProposta(e) {
+    e.preventDefault()
+
+    const data = {
+      titulo,
+      descricao
+    }
+
+    try {
+      await api.post('propostas', data, {
+        headers: {
+          Authorization: usuarioID
+        }
+      })
+      historico.push('/perfil')
+    } catch (error) {
+      alert('Erro ao cadastrar proposta, tente novamente')
+    }
+  }
+
   return (
     <div className="novaproposta-container">
       <div className="content">
@@ -21,9 +48,17 @@ export default function NovaProposta() {
             Voltar para página inicial.
           </Link>
         </section>
-        <form>
-          <input placeholder="Título da proposta" />
-          <textarea placeholder="Descrição" />
+        <form onSubmit={criarNovaProposta}>
+          <input
+            value={titulo}
+            onChange={(e) => setTitulo(e.target.value)}
+            placeholder="Título da proposta"
+          />
+          <textarea
+            value={descricao}
+            onChange={(e) => setDescricao(e.target.value)}
+            placeholder="Descrição"
+          />
           <button className="button">Enviar</button>
         </form>
       </div>
