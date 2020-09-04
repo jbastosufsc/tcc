@@ -37,7 +37,7 @@
 
 .cadastro-container .content form {
   width: 100%;
-  max-width: 450px;
+  max-width: 350px;
 }
 
 .cadastro-container .content form .radio-button-classificacao {
@@ -69,4 +69,29 @@
 
 .cadastro-container .content form input {
   margin-top: 8px;
+}
+
+@media (max-width: 980px) {
+  .cadastro-container .content {
+    flex-direction: column;
+    padding: 0;
+    height: 100%;
+  }
+  .cadastro-container .content section img {
+    width: 100%;
+  }
+
+  .cadastro-container .content section h1 {
+    margin: 32px 0 16px;
+  }
+
+  .cadastro-container .content section a.back-link {
+    margin-top: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cadastro-container .content form {
+    max-width: 450px;
+  }
 }
