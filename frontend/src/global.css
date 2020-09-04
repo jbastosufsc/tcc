@@ -48,7 +48,7 @@ form textarea {
   background: #1659bf;
   border: 0;
   border-radius: 8px;
-  color: #FFFF;
+  color: #ffff;
   font-weight: 700;
   margin-top: 16px;
   display: inline-block;
@@ -66,7 +66,7 @@ form textarea {
 .back-link {
   display: flex;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 25px;
   color: #41414d;
   font-size: 18px;
   text-decoration: none;
